@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/sidebars.css' %}">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {% comment %} ドロップダウンメニューが利かなくなったので下記追加 {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block title%}集計{%endblock %}
+{% block header %}<h1>集計情報</h1>{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="wrapper">
+{% include 'visitors_card_app/analysis/sidebar.html' %}
+
+
+        {% comment %} <div id="content"> {% endcomment %}
+            <button type="button" id="sidebarCollapse">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+          <div class="container">
+            <div class="row">
+              <div class="col-7">
+              {% if total %}
+                  <h2>1日当たりの訪問者数　　　　　　　　合計{{ total }}件</h2>
+              {% else %}
+                  <h2>1日当たりの訪問者数　　　　　　　　未登録</h2>
+              {% endif %}
+              </div>
+                <div class="col-2">
+                  <form method="post">
+                  {% csrf_token %}
+                      <select name="narrow_period">
+                        <option value="1month" selected>直近1か月</option>
+                        <option value="3months">直近3か月</option>
+                        <option value="1month">今月</option>
+                        <option value="1month">先々月</option>
+                      </select>
+                    <button name="go_narrow_period">絞り込み</button>
+                  </form>
+                </div>
+              <div class="col-3">
+                <form method="post">
+                {% csrf_token %}
+                  <select name="period_year">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                  </select>
+                  <select name="period_month">
+                    <option value="">----</option>
+                    <option value="1月">1月</option>
+                    <option value="2月">2月</option>
+                    <option value="3月">3月</option>
+                    <option value="4月">4月</option>
+                    <option value="5月">5月</option>
+                    <option value="6月">6月</option>
+                    <option value="7月">7月</option>
+                    <option value="8月">8月</option>
+                    <option value="9月">9月</option>
+                    <option value="10月">10月</option>
+                    <option value="11月">11月</option>
+                    <option value="12月">12月</option>
+                  </select>
+                  <button name="go_specify_period">期間指定</button>
+                </form>
+              </div>
+            </div>
+            	<img src="data:image/png;base64,{{ chart | safe }}" alt="1日当たりの訪問者数：データ未登録">
+          </div>
+        {% comment %} </div> {% endcomment %}
+  </div>
+</div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $(this).toggleClass('active');
+    });
+});
+
+
+$(function() {
+    $('.js-dropdown').click(function(){
+        $('.js-dropdown-menu').toggle();
+    });
+});
+
+$(function() {
+    $('.js-dropdown2').click(function(){
+        $('.js-dropdown-menu2').toggle();
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+$('ul>li>a').on('click', function(){
+   
+      $('.collapse').collapse('hide');
+}); {% endcomment %}
+{% comment %} 
+$(".js-dropdown").click(function () {
+  $(".js-dropdown-menu").slideToggle();
+});
+
+$(".js-dropdown").click(function(){
+    $(this).toggle();
+});
+
+$(".js-dropdown").click(function(){
+    $("#dropdown2").hide();
+}); {% endcomment %}
+
+
+
+{% comment %} 
+$(function(){
+  var $dropdown = $('.js-dropdown');
+  var DURATION = 200; //アニメーションの速さ
+
+  function fadeOutMenu(){
+    $dropdown.removeClass('collapse')
+      .next('.js-dropdown-menu')
+      .stop()
+      .slideUp(DURATION);
+  }
+
+  //表示を切り替える
+  function toggleMenu(){
+    var $self = $(this); //thisにはクリックした時の要素が入る
+    //要素が.is-activeを持っていない場合
+    if(!$self.hasClass('collapse')){
+      fadeOutMenu();
+    }
+    //クリックした要素を表示させる
+    $self.toggleClass('collapse')
+      .next('.js-dropdown-menu')
+      .stop().slideToggle(DURATION);
+  }
+
+  $dropdown.on('click', toggleMenu);
+ 
+//別の場所をクリックすると閉じる処理
+  $(document).on('click touchend', function(event) {
+  if (!$(event.target).closest('body').length) {
+    // ここに処理;
+    fadeOutMenu();//関数呼びだし
+  }
+});
+}); {% endcomment %}
+
+</script>
+{% endblock %}

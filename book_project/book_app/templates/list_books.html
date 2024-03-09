@@ -1,0 +1,16 @@
+
+ 
+    {% csrf_token %}
+  <form class="sortable" hx-post="{% url 'book_app:sort' %}" hx-trigger="end" hx-target="#book_list" hx-swap="innerHTML">
+    <div class="htmx-indicator">Updating...</div>
+    
+    {% for book in all_books %}
+    <div>
+        <input type='hidden' name='book_order' value='{{ book.pk }}'/>
+      <p>#{{ book.order }} / {{ book.category.large_category }}/{{ book.category }}/{{ book.title }}</p>
+    </div>
+    {% endfor %}
+
+  </form>
+
+

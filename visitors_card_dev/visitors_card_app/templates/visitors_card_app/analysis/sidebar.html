@@ -1,0 +1,45 @@
+    <nav id="sidebar">
+
+        <ul class="list-unstyled components">
+            <p></p>
+            <li>
+                <a href="{% url 'visitors_card_app:analysis_index' %}">トップ</a>
+            </li>
+            <li>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle js-dropdown">カテゴリー</a>
+                <div class="js-dropdown-menu">
+                <ul class="list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="{% url 'visitors_card_app:list_company' %}">企業</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'visitors_card_app:list_name' %}">訪問者</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'visitors_card_app:list_interviewer' %}">担当者</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'visitors_card_app:list_history' %}">一覧</a>
+                    </li>
+                    <li>
+                        <a href="#">集計情報一覧</a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            {% comment %} <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle js-dropdown2">期間</a>
+                <div class="js-dropdown-menu2">
+                <ul class="list-unstyled" id="pageSubmenu" style="collapse: hide;">
+                    <li>
+                        <a href="#">年毎</a>
+                    </li>
+                    <li>
+                        <a href="#">月毎</a>
+                    </li>
+                </ul>
+                </div>
+            </li> {% endcomment %}
+        </ul>
+    </nav>
+

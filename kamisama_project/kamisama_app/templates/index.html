@@ -1,0 +1,33 @@
+
+Hello World
+{% for content in contents %}
+<p>
+{{ content.tag }}
+{{ content.content_object }}
+</p>
+{% endfor %}
+
+{% for god in gods %}
+<p>
+{{ god.category.content_object.category.category }}
+
+{% if god.category.content_object.category.category.description %}
+/{{ god.category.content_object.category.category.description }}/
+{% endif %}
+
+{{ god.category.content_object.category }}
+
+{% if god.category.content_object.category.description %}
+/{{ god.category.content_object.category.description }}/
+{% endif %}
+
+{{ god.category.content_object }}
+
+{% if god.category.content_object.description %}
+/{{ god.category.content_object.description }}/
+{% endif %}
+
+<strong>{{ god.name }}</strong>
+{{ god.category }}
+</p>
+{% endfor %}

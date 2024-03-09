@@ -1,0 +1,80 @@
+{% extends 'borrower/base.html' %}
+        
+        {% block head %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet" />
+        {% endblock %}
+        {% block title%}{% endblock %}
+        {% block header %}
+        {% endblock %}
+        {% comment %} <!-- Header-->
+        <header class="py-5">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">ログイン</h1>
+                        <p class="fs-4">一度に5冊まで。返却期限は3ヶ月。</p>
+                        <input type="email" name="example1" placeholder="メールアドレス">
+                        <input type="password" name="example2" placeholder="パスワード">
+                        <a class="btn btn-primary btn-lg" href="#!">log in</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </header> {% endcomment %}
+        {% block content %}
+        <!-- Page Content-->
+        <section class="pt-4">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <a class="btn btn-primary btn-lg feature  bg-gradient text-white rounded-3 mb-4 mt-n4" href="{% url 'book_rental_app:list_borrowing' %}"><i class="bi bi-book"></i></a>
+                                <h2 class="fs-4 fw-bold">本を借りる</h2>
+                                <p class="mb-0"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <a class="btn btn-primary btn-lg feature  bg-gradient text-white rounded-3 mb-4 mt-n4" href="{% url 'book_rental_app:list_borrowed' %}"><i class="bi bi-book-half"></i></a>
+                                <h2 class="fs-4 fw-bold">本を返却する</h2>
+                                <p class="mb-0">貸し出し情報の閲覧</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <a class="btn btn-warning btn-lg feature  bg-gradient text-white rounded-3 mb-4 mt-n4" href="#!"><i class="bi bi-chat-square-heart"></i></a>
+                                <h2 class="fs-4 fw-bold">リクエストフォーム</h2>
+                                <p class="mb-0">書籍のリクエストはこちらから。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <a class="btn btn-warning btn-lg feature  bg-gradient text-white rounded-3 mb-4 mt-n4" href="#!"><i class="bi bi-gear"></i></a>
+                                <h2 class="fs-4 fw-bold">詳細設定</h2>
+                                <p class="mb-0">設定の変更はこちら。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <a class="btn btn-primary btn-lg feature  bg-gradient text-white rounded-3 mb-4 mt-n4" href="{% url 'book_rental_app:rental_history' %}"><i class="bi bi-clock-history"></i></a>
+                                <h2 class="fs-4 fw-bold">履歴</h2>
+                                <p class="mb-0">借りた履歴</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
